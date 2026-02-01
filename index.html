@@ -10,7 +10,7 @@
 
 <style>
 :root{
-  --accent:#d4af37; /* emas halus */
+  --accent:#d4af37; /* emas */
   --text:#111;
   --muted:#555;
 }
@@ -26,7 +26,7 @@ body{
   background:#fff;
   color:var(--text);
   line-height:1.6;
-  user-select:none; /* anti copas */
+  user-select:none;
 }
 
 img{
@@ -47,10 +47,20 @@ nav{
   z-index:100;
 }
 
+nav .logo{
+  font-weight:800;
+  font-size:1.2rem;
+  color:var(--text);
+}
+
+nav .nav-links{
+  display:flex;
+  gap:30px;
+}
+
 nav a{
   text-decoration:none;
   color:var(--text);
-  margin-left:30px;
   font-weight:500;
   position:relative;
 }
@@ -73,6 +83,14 @@ nav a:hover::after{
 nav a:hover{
   color:var(--accent);
   text-shadow:0 0 10px rgba(212,175,55,.5);
+}
+
+/* burger menu */
+.burger{
+  display:none;
+  font-size:1.6rem;
+  cursor:pointer;
+  color:var(--text);
 }
 
 /* ================= HERO ================= */
@@ -98,15 +116,15 @@ nav a:hover{
 }
 
 .hero-title span:first-child{
-  color:var(--accent); /* emas */
+  color:var(--accent);
 }
 
 .hero-title span:nth-child(2){
-  color:var(--text); /* hitam */
+  color:var(--text);
 }
 
 .hero-title span:nth-child(3){
-  color:var(--accent); /* emas */
+  color:var(--accent);
 }
 
 .hero-desc{
@@ -151,7 +169,7 @@ nav a:hover{
 
 /* ================= SECTION ================= */
 section{
-  padding:60px 80px; /* jarak antar section lebih rapat */
+  padding:60px 80px;
 }
 
 section h2{
@@ -165,7 +183,7 @@ section h3{
   color:var(--accent);
 }
 
-/* glow text hover global */
+/* glow hover global */
 .glow:hover{
   color:var(--accent);
   text-shadow:0 0 12px rgba(212,175,55,.55);
@@ -291,8 +309,9 @@ iframe{
   border-radius:12px;
 }
 
-/* responsif */
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
+  /* HERO & profile */
   .hero{
     grid-template-columns:1fr;
     padding-top:120px;
@@ -305,16 +324,54 @@ iframe{
   .hero-title{
     font-size:2.6rem;
   }
+
+  /* NAV burger */
+  nav .nav-links{
+    position:fixed;
+    top:70px;
+    right:-100%;
+    width:200px;
+    height:100vh;
+    background:#fff;
+    flex-direction:column;
+    gap:20px;
+    padding:30px;
+    transition:0.3s;
+    box-shadow:-4px 0 15px rgba(0,0,0,.1);
+    z-index:99;
+  }
+
+  nav .nav-links.active{
+    right:0;
+  }
+
+  .burger{
+    display:block;
+  }
+
+  nav .nav-links a{
+    font-size:1.2rem;
+  }
+
+  /* WORK GRID responsive */
+  .work-grid{
+    grid-template-columns:1fr; /* 1 kolom di mobile */
+  }
+
+  .work-item img{
+    max-height:300px; /* tidak terlalu kecil */
+    object-fit:cover;
+  }
 }
 </style>
 </head>
-
 <body>
 
 <!-- NAV -->
 <nav>
-  <strong class="glow">Wisnu Prasetyo</strong>
-  <div>
+  <div class="logo glow">Wisnu Prasetyo</div>
+  <div class="burger"><i class="fas fa-bars"></i></div>
+  <div class="nav-links">
     <a href="#about">About</a>
     <a href="#service">Service</a>
     <a href="#work">Work</a>
@@ -324,30 +381,24 @@ iframe{
 
 <!-- HERO -->
 <header class="hero">
-  <!-- LEFT -->
   <div class="hero-text">
     <h1 class="hero-title glow">
       <span>FULL STACK DEVELOPER</span><br>
       <span>DATA ANALYST</span><br>
       <span>BUSINESS PLAN CONSULTANT</span>
     </h1>
-
     <p class="hero-desc">
       Saya membangun sistem digital yang cepat, aman, scalable, dan berorientasi bisnis.
     </p>
-
     <div class="quote">
       “Technology should simplify problems, not create new ones.”
     </div>
-
     <div class="social hero-social">
       <a href="#"><i class="fab fa-instagram"></i></a>
       <a href="#"><i class="fab fa-tiktok"></i></a>
       <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
   </div>
-
-  <!-- RIGHT -->
   <div class="profile-wrap">
     <img src="https://i.ibb.co.com/dsdhY35S/IMG-3299.jpg" alt="Wisnu Prasetyo">
   </div>
@@ -360,7 +411,6 @@ iframe{
     Saya adalah Full Stack Developer dan Data Analyst dengan pengalaman membangun sistem end-to-end, mulai dari perancangan database, backend logic, frontend interaktif, hingga analisis data untuk pengambilan keputusan bisnis.
     Saya terbiasa mengerjakan sistem kompleks seperti Event Management System dengan logika khusus dan optimasi performa.
   </p>
-
   <div class="stats">
     <div class="stat">
       <strong>100+</strong>
@@ -432,11 +482,20 @@ iframe{
       </div>
     </div>
   </div>
-
   <div class="footer-bottom">
     © 2026 Wisnu Prasetyo
   </div>
 </footer>
+
+<!-- ================= JS BURGER ================= -->
+<script>
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+
+burger.addEventListener('click', ()=>{
+  navLinks.classList.toggle('active');
+});
+</script>
 
 </body>
 </html>
