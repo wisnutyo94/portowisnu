@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wisnu Prasetyo | Portfolio</title>
+
+<!-- ICON -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --accent:#d4af37; /* emas halus */
+  --text:#111;
+  --muted:#555;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: "Inter", system-ui, sans-serif;
+  background:#fff;
+  color:var(--text);
+  line-height:1.6;
+  user-select:none; /* anti copas */
+}
+
+img{
+  pointer-events:none;
+}
+
+/* ================= NAV ================= */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 80px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fff;
+  z-index:100;
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--text);
+  margin-left:30px;
+  font-weight:500;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:.4s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+nav a:hover{
+  color:var(--accent);
+  text-shadow:0 0 10px rgba(212,175,55,.5);
+}
+
+/* ================= HERO ================= */
+.hero{
+  padding:140px 80px 80px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:60px;
+}
+
+.hero-text{
+  max-width:650px;
+}
+
+.hero-title{
+  font-size:3.8rem;
+  font-weight:800;
+  line-height:1.05;
+  letter-spacing:.02em;
+  margin-bottom:18px;
+  text-transform:uppercase;
+}
+
+.hero-title span:first-child{
+  color:var(--accent); /* emas */
+}
+
+.hero-title span:nth-child(2){
+  color:var(--text); /* hitam */
+}
+
+.hero-title span:nth-child(3){
+  color:var(--accent); /* emas */
+}
+
+.hero-desc{
+  color:var(--muted);
+  max-width:520px;
+  margin-bottom:18px;
+}
+
+.hero-social{
+  margin-top:26px;
+}
+
+/* profile image */
+.profile-wrap{
+  position:relative;
+}
+
+.profile-wrap img{
+  width:100%;
+  max-width:380px;
+  border-radius:16px;
+  transition:.6s;
+}
+
+.profile-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-10px;
+  background:radial-gradient(circle, rgba(212,175,55,.35), transparent 70%);
+  opacity:0;
+  transition:.6s;
+}
+
+.profile-wrap:hover::before{
+  opacity:1;
+}
+
+.profile-wrap:hover img{
+  transform:scale(1.04);
+  box-shadow:0 30px 60px rgba(212,175,55,.25);
+}
+
+/* ================= SECTION ================= */
+section{
+  padding:60px 80px; /* jarak antar section lebih rapat */
+}
+
+section h2{
+  font-size:2.2rem;
+  margin-bottom:20px;
+}
+
+section h3{
+  font-size:1.2rem;
+  margin-bottom:12px;
+  color:var(--accent);
+}
+
+/* glow text hover global */
+.glow:hover{
+  color:var(--accent);
+  text-shadow:0 0 12px rgba(212,175,55,.55);
+  transition:.4s;
+}
+
+/* ================= ABOUT ================= */
+.about p{
+  max-width:900px;
+  text-align:justify;
+  color:#444;
+}
+
+/* ================= STATS ================= */
+.stats{
+  display:flex;
+  gap:60px;
+  margin-top:30px;
+}
+
+.stat strong{
+  font-size:2rem;
+  color:var(--accent);
+}
+
+/* ================= SERVICES ================= */
+.services{
+  display:flex;
+  gap:50px;
+  flex-wrap:wrap;
+}
+
+.service{
+  max-width:300px;
+}
+
+.service i{
+  font-size:1.8rem;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+
+/* ================= WORK ================= */
+.work-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:20px;
+}
+
+.work-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:14px;
+}
+
+.work-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.6s;
+}
+
+.work-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(212,175,55,.35), transparent);
+  opacity:0;
+  transition:.6s;
+}
+
+.work-item:hover::after{
+  opacity:1;
+}
+
+.work-item:hover img{
+  transform:scale(1.05);
+}
+
+/* ================= SOCIAL ================= */
+.social{
+  display:flex;
+  gap:25px;
+  margin-top:20px;
+}
+
+.social a{
+  color:var(--text);
+  font-size:1.5rem;
+  transition:.4s;
+}
+
+.social a:hover{
+  color:var(--accent);
+  text-shadow:0 0 15px rgba(212,175,55,.6);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  padding:60px 80px;
+  background:#fafafa;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+}
+
+.footer-bottom{
+  margin-top:50px;
+  padding-top:25px;
+  text-align:center;
+  font-size:.9rem;
+  color:#777;
+  border-top:1px solid #ddd;
+}
+
+iframe{
+  width:100%;
+  height:200px;
+  border:0;
+  border-radius:12px;
+}
+
+/* responsif */
+@media(max-width:900px){
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:120px;
+  }
+
+  .profile-wrap{
+    margin-top:40px;
+  }
+
+  .hero-title{
+    font-size:2.6rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <strong class="glow">Wisnu Prasetyo</strong>
+  <div>
+    <a href="#about">About</a>
+    <a href="#service">Service</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <!-- LEFT -->
+  <div class="hero-text">
+    <h1 class="hero-title glow">
+      <span>FULL STACK DEVELOPER</span><br>
+      <span>DATA ANALYST</span><br>
+      <span>BUSINESS PLAN CONSULTANT</span>
+    </h1>
+
+    <p class="hero-desc">
+      Saya membangun sistem digital yang cepat, aman, scalable, dan berorientasi bisnis.
+    </p>
+
+    <div class="quote">
+      “Technology should simplify problems, not create new ones.”
+    </div>
+
+    <div class="social hero-social">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="profile-wrap">
+    <img src="https://i.ibb.co.com/dsdhY35S/IMG-3299.jpg" alt="Wisnu Prasetyo">
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <h2 class="glow">About Me</h2>
+  <p>
+    Saya adalah Full Stack Developer dan Data Analyst dengan pengalaman membangun sistem end-to-end, mulai dari perancangan database, backend logic, frontend interaktif, hingga analisis data untuk pengambilan keputusan bisnis.
+    Saya terbiasa mengerjakan sistem kompleks seperti Event Management System dengan logika khusus dan optimasi performa.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <strong>100+</strong>
+      <p>Project Selesai</p>
+    </div>
+    <div class="stat">
+      <strong>3+</strong>
+      <p>Tahun Pengalaman</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section id="service">
+  <h2 class="glow">Services</h2>
+  <div class="services">
+    <div class="service glow">
+      <i class="fas fa-code"></i>
+      <h3>Full Stack Development</h3>
+      <p>Membangun sistem web end-to-end yang scalable dan aman.</p>
+    </div>
+    <div class="service glow">
+      <i class="fas fa-database"></i>
+      <h3>Data Analysis</h3>
+      <p>Mengolah dan menganalisis data untuk insight bisnis.</p>
+    </div>
+    <div class="service glow">
+      <i class="fas fa-bullhorn"></i>
+      <h3>Marketing & Ads</h3>
+      <p>Optimasi iklan digital berbasis data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <h2 class="glow">Selected Work</h2>
+  <div class="work-grid">
+    <div class="work-item">
+      <img src="https://picsum.photos/800/600?1">
+    </div>
+    <div class="work-item">
+      <img src="https://picsum.photos/800/600?2">
+    </div>
+    <div class="work-item">
+      <img src="https://picsum.photos/800/600?3">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <strong>Contact</strong>
+      <p>Email: wisnuprasetyo@email.com</p>
+      <p>WhatsApp: +62 812-XXXX-XXXX</p>
+    </div>
+    <div>
+      <strong>Location</strong>
+      <iframe src="https://www.google.com/maps?q=Indonesia&output=embed"></iframe>
+    </div>
+    <div>
+      <strong>Social</strong>
+      <div class="social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Wisnu Prasetyo
+  </div>
+</footer>
+
+</body>
+</html>
