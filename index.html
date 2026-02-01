@@ -96,14 +96,11 @@ nav a:hover{
 
 /* ================= HERO ================= */
 .hero{
-  display:flex;
-  flex-direction:column; /* vertical stack */
-  justify-content:center; /* vertical center */
-  align-items:center;     /* horizontal center */
-  text-align:center;
-  min-height:100vh;      /* tinggi 100% viewport */
-  padding:0 20px;
-  gap:20px;
+  padding:140px 80px 80px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:60px;
 }
 
 .hero-text{
@@ -162,9 +159,8 @@ nav a:hover{
 .hero-social-cv{
   display:flex;
   flex-direction:column;
-  align-items:center; /* center horizontal */
   gap:12px;
-  margin-top:20px;
+  margin-top:26px;
   opacity:0;
   transform:translateY(20px);
   transition:all 0.8s ease-out 0.4s;
@@ -208,6 +204,44 @@ nav a:hover{
   background:#111;
   color:var(--accent);
   box-shadow:0 0 12px rgba(212,175,55,.5);
+}
+
+/* profile image */
+.profile-wrap{
+  position:relative;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 0.8s ease-out 0.6s;
+}
+
+.profile-wrap.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.profile-wrap img{
+  width:100%;
+  max-width:380px;
+  border-radius:16px;
+  transition:.6s;
+}
+
+.profile-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-10px;
+  background:radial-gradient(circle, rgba(212,175,55,.35), transparent 70%);
+  opacity:0;
+  transition:.6s;
+}
+
+.profile-wrap:hover::before{
+  opacity:1;
+}
+
+.profile-wrap:hover img{
+  transform:scale(1.04);
+  box-shadow:0 30px 60px rgba(212,175,55,.25);
 }
 
 /* ================= SECTION ================= */
@@ -346,9 +380,12 @@ iframe{
 @media(max-width:900px){
   /* HERO & profile */
   .hero{
-    min-height:auto;
-    padding-top:100px;
-    padding-bottom:60px;
+    grid-template-columns:1fr;
+    padding-top:120px;
+  }
+
+  .profile-wrap{
+    margin-top:40px;
   }
 
   .hero-title{
@@ -399,6 +436,10 @@ iframe{
     text-align:center;
     gap:30px;
   }
+
+  .hero-social-cv{
+    align-items:flex-start;
+  }
 }
 </style>
 </head>
@@ -440,6 +481,10 @@ iframe{
         <a href="#"><i class="fab fa-linkedin"></i></a>
       </div>
     </div>
+  </div>
+
+  <div class="profile-wrap">
+    <img src="https://i.ibb.co.com/dsdhY35S/IMG-3299.jpg" alt="Wisnu Prasetyo">
   </div>
 </header>
 
@@ -536,7 +581,7 @@ burger.addEventListener('click', ()=>{
 });
 
 // Section fade-in animation
-const faders = document.querySelectorAll('.hero-title, .hero-desc, .hero-social-cv, section');
+const faders = document.querySelectorAll('.hero-title, .hero-desc, .hero-social-cv, .profile-wrap, section');
 const appearOptions = { threshold: 0.1 };
 const appearOnScroll = new IntersectionObserver(function(entries, observer){
   entries.forEach(entry=>{
